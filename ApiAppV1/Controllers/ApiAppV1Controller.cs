@@ -31,7 +31,7 @@ namespace ApiAppV1.Controllers
         {
             var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
-            return new string[] { "UsuariosApi V. " + version };
+            return new string[] { "ApiAppV1 V. " + version };
 
         }
 
@@ -45,6 +45,16 @@ namespace ApiAppV1.Controllers
             try
             {
                 productoResponse = _iProductoService.consultar(sol);
+
+                if (productoResponse is null) {
+                    return Ok(new
+                    {
+                        exitoso = false,
+                        datos = new ProductoResponse(String.Empty, String.Empty, false, false),
+                        mensaje = "No se encontró la solicitud"
+                    });
+                }
+                
                 return Ok(new
                 {
                     exitoso = true,
@@ -55,12 +65,12 @@ namespace ApiAppV1.Controllers
             catch (Exception ex) {
                 mensaje = "Error inesperado: " + ex.Message;
                 log.Info(mensaje);
-                ProductoResponse p = new ProductoResponse(String.Empty, String.Empty);
+                ProductoResponse p = new ProductoResponse(String.Empty, String.Empty, false, false);
                 return NotFound(new
                 {
                     exitoso = false,
                     datos = p,
-                    mensaje = "Error inesperado"                   
+                    mensaje = "No se pudo obtener la informacion"
                 });
             }
             
