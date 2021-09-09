@@ -40,6 +40,7 @@ namespace ApiAppV1.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> GetReferencias([FromBody] SolicitudRequest sol)
         {
+            //@@EL SP YA ESTA LISTO, PERO SI SE CORRE Y SE MODIFICA, AFECTARA LO QUE HAY EN LA PUBLOCACION
             string mensaje = String.Empty;
             ProductoResponse productoResponse = null;
             try
@@ -50,7 +51,7 @@ namespace ApiAppV1.Controllers
                     return Ok(new
                     {
                         exitoso = false,
-                        datos = new ProductoResponse(String.Empty, String.Empty, false, false),
+                        datos = new ProductoResponse(String.Empty, String.Empty, String.Empty, false, false, false),
                         mensaje = "No se encontró la solicitud"
                     });
                 }
@@ -65,7 +66,7 @@ namespace ApiAppV1.Controllers
             catch (Exception ex) {
                 mensaje = "Error inesperado: " + ex.Message;
                 log.Info(mensaje);
-                ProductoResponse p = new ProductoResponse(String.Empty, String.Empty, false, false);
+                ProductoResponse p = new ProductoResponse(String.Empty, String.Empty, String.Empty, false, false, false);
                 return NotFound(new
                 {
                     exitoso = false,

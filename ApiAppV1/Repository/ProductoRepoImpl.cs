@@ -50,6 +50,12 @@ namespace ApiTokensAppsMacropay.Repository
                                         productoResponse.ReferenciaOpenpay = sqlDataReader["referencia"].ToString();
                                         productoResponse.TieneReferenciaOpenpay = Int32.Parse(sqlDataReader["visible_app"].ToString()) == 1 ? true : false;
                                     }
+
+                                    if (plataforma.Equals("WILLYS"))
+                                    {
+                                        productoResponse.ReferenciaWillys = sqlDataReader["referencia"].ToString();
+                                        productoResponse.TieneReferenciaWillys = Int32.Parse(sqlDataReader["visible_app"].ToString()) == 1 ? true : false;
+                                    }
                                 }
                             }
                             else {//No se encontró la solicitud
