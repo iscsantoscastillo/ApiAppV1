@@ -37,7 +37,8 @@ namespace ApiAppV1.Controllers
 
         [HttpPost("GetReferencias")]
         [ApiExplorerSettings(IgnoreApi = true)]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]//Basic Auth
         public async Task<IActionResult> GetReferencias([FromBody] SolicitudRequest sol)
         {
             //@@EL SP YA ESTA LISTO, PERO SI SE CORRE Y SE MODIFICA, AFECTARA LO QUE HAY EN LA PUBLOCACION

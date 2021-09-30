@@ -1,6 +1,7 @@
 using ApiAppV1.Helpers;
 using ApiTokensAppsMacropay.Repository;
 using ApiTokensAppsMacropay.Service;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,6 +64,11 @@ namespace ApiAppV1
                 ClockSkew = TimeSpan.Zero
             });
 
+            //Basic Auth
+            services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+
             //Inyección de Dependencias
             services.AddTransient<IProductoService, ProductoServiceImpl>();
             services.AddTransient<IProductoRepo, ProductoRepoImpl>();
@@ -74,12 +80,12 @@ namespace ApiAppV1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiAppV1 v1"));
+                
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiAppV1 v1"));
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

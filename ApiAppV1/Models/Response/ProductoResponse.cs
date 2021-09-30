@@ -7,7 +7,14 @@ namespace ApiAppV1.Models.Response
 {
     public class ProductoResponse
     {
-        public ProductoResponse() { }
+        public ProductoResponse() {
+            this.ReferenciaConekta = String.Empty;
+            this.ReferenciaOpenpay = String.Empty;
+            this.ReferenciaWillys = String.Empty;
+            this.TieneReferenciaConekta = false;
+            this.TieneReferenciaOpenpay = false;
+            this.TieneReferenciaWillys = false;
+        }
         public ProductoResponse(string refConekta, string refOpenpay, string refWillys, bool tieneRefConekta, bool tieneRefOpenpay, bool tieneRefWillys) {
             this.ReferenciaConekta = refConekta;
             this.ReferenciaOpenpay = refOpenpay;
