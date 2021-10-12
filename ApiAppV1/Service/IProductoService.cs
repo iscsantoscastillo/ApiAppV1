@@ -1,4 +1,5 @@
-﻿using ApiAppV1.Models.Response;
+﻿using ApiAppV1.Models.Request;
+using ApiAppV1.Models.Response;
 using ApiTokensAppsMacropay.Models.Request;
 
 using System;
@@ -10,7 +11,10 @@ namespace ApiTokensAppsMacropay.Service
 {
     public interface IProductoService
     {
-        ProductoResponse consultar(SolicitudRequest solicitudRequest);
-       
+        public ProductoResponse consultar(SolicitudRequest solicitudRequest);
+        public ProductoResponse ActualizarDatosClienteCash(SolicitudRequest solicitud);
+        public int GuardarTokenFireBase(EntradaRequest entrada);
+        public ReferenciaCobroResponse GetReferenciaCobro(EntradaRequest entrada);
+
     }
 }

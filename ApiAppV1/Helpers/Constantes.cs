@@ -47,6 +47,7 @@
         public const string FORMATO_FECHA = "dd/MM/yyyy";
         public const string FORMATO_FECHAHORA = "dd/MM/yyyy HH:mm:ss";
 
+        public const string SISTEMA = "APIAPPV11";
 
 
     }
